@@ -12,6 +12,15 @@ moreAddresses.addEventListener('click',(e)=>{
             'Content-Type':'application/json'
         }
     }).then((response)=>response.json()).then((data)=>{
+     
+      if(data.address === false){
+        Swal.fire({
+          icon: 'error',
+          title: 'No Address Data Found',
+          text: 'Sorry, there is no address data available.',
+        });
+       return
+      }
         const addressesHtml = data.addresses.map((address)=>
         
         `

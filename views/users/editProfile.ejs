@@ -8,8 +8,14 @@
         <div class="col-lg-4">
           <div class="card mb-4">
             <div class="card-body text-center">
-              <img src="/images/userImages/<%= user.image %>" alt="avatar"
+              <% if(user && user.image){%>
+                <img src="/images/userImages/<%= user.image %>" alt="avatar"
                 class="rounded-circle img-fluid" style="width: 150px;">
+             <% }else{%>
+              <img src="/images/userImages/image-not-found-1-scaled.png" alt="avatar"
+                class="rounded-circle img-fluid" style="width: 150px;">
+            <%}%>
+              
                 <input type="file" name="image" id="imageInput" accept="image/*">
               <h5 class="my-3"><%= user.name %></h5>
               <input type="hidden" name="user_id" value="<%= user._id %>" id="">
@@ -29,7 +35,7 @@
                   <p class="mb-0">Username</p>
                 </div>
                 <div class="col-sm-9">
-                  <input type="text" name="name" id="name" value="<%= user.name %>">
+                  <input type="text" name="name" id="profileName" value="<%= user.name %>">
         
                 </div>
               </div>
@@ -39,7 +45,7 @@
                   <p class="mb-0">Email</p>
                 </div>
                 <div class="col-sm-9">
-                 <input type="email" name="email" id="email" value="<%= user.email %>">
+                 <input type="email" name="email" id="profileEmail" value="<%= user.email %>">
                 </div>
               </div>
               <hr>
@@ -48,7 +54,7 @@
                   <p class="mb-0">Phone</p>
                 </div>
                 <div class="col-sm-9">
-                  <input type="text" name="mobile" value="<%= user.mobile %>">
+                  <input type="text" name="profileMobile" value="<%= user.mobile %>">
                 </div>
               </div>
               <hr>

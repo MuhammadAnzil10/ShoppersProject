@@ -4,10 +4,48 @@ document.getElementById('imageForm').addEventListener('submit',(event)=>{
     event.preventDefault()
 
     const imageInput = document.getElementById('imageInput')
+    const profileName = document.getElementById('profileName')
+    const profileEmail = document.getElementById('profileEmail')
+    const profileMobile = document.getElementById('profileMobile')
     
+    const regexName = /^[a-zA-Z]+$/;
+    const mobilePattern = /^[6-9]\d{9}$/;
+    const emailRegex =/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
     const file = imageInput.files[0]
 
+
+    if(profileName.value.trim()==='' || !regexName.test(profileName.value.trim())){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please Enter valid name',
+        
+      })
+    
+    return
+    }else if(profileEmail.value.trim()==='' || !emailRegex.test(profileEmail.value.trim())){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please Enter valid email',
+        
+      })
+    
+    return
+    }else if(profileMobile.value.trim()==='' || !mobilePattern.test(profileMobile.value.trim())){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please Enter valid mobile',
+        
+      })
+    
+    return
+    }
+    
    
+
+
 
     if(!file){
 

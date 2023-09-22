@@ -95,5 +95,7 @@ function handleSortingCheckboxClick(event) {
     localStorage.removeItem('checkedSortingOptions')
     localStorage.removeItem('checkedItems')
 
+    location.href='/products'
+
 
   }
