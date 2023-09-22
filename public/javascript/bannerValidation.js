@@ -1,7 +1,6 @@
 
 const addBannerForm = document.getElementById('addBannerForm')
 
-console.log(addBannerForm);
 
 addBannerForm.addEventListener('submit',(e)=>{
     e.preventDefault()
@@ -60,39 +59,6 @@ addBannerForm.addEventListener('submit',(e)=>{
     }
 
     addBannerForm.submit()
-})
-
-
-
-
-const bannerForm = document.getElementById('editBannerForm')
-
-bannerForm.addEventListener('submit',(e)=>{
-
-    e.preventDefault()
-
-    const bannerName = document.getElementById('bannerName')
-    const bannerDescription = document.getElementById('bannerDescription')
-
-    if(bannerName.value.trim() ==='')
-    {
-        bannerName.setCustomValidity('Please enter valid name')
-        return
-    }else{
-        bannerName.setCustomValidity('')
-    }
-
-    if(bannerDescription.value.trim() ==='')
-    {
-        bannerDescription.setCustomValidity('Please enter valid Description')
-        return
-    }else{
-        bannerName.setCustomValidity('')
-    }
-
-
-    bannerForm.submit()
-
 })
 
 
