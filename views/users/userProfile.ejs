@@ -1,0 +1,80 @@
+<%- include('../layout/header') %>
+
+
+<!-- content -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-xl-3">
+        <nav class="nav flex-lg-column w-100 d-flex nav-pills mb-4">
+          <a class="nav-link my-0 active" href="#"><p class="pb-0 mb-0" style="width: 100px">Account main</p></a>
+          <a class="nav-link my-0 bg-light" href="/order-list"><p class="pb-0 mb-0" style="width: 100px">Orders history</p></a>
+          <a class="nav-link my-0 bg-light" href="/adresses"><p class="pb-0 mb-0" style="width: 100px">Adresses</p></a>
+         
+        </nav>
+      </div>
+      <main class="col-lg-9 col-xl-9 ">
+        <div class="card p-4 mb-0 shadow-0 border">
+          <div class="content-body">
+            <div class="d-flex align-items-center">
+              <div class="me-3">
+                <% if(user.image){%>
+                  <img src="/images/userImages/<%= user.image %>" class="rounded-circle" style="height: 60px; width: 60px;" />
+                  <% }else{ %>
+                    <img src="/images/userImages/computer-science-1331579_640.png" class="rounded-circle" style="height: 60px; width: 60px;" />
+                 <% } %>
+                  
+              </div>
+              <div class="pt-2">
+                <h6 class="pt-2"><%= user.name %></h6>
+                <p>
+                  Email: <%=user.email %>, Phone: <%=user.mobile %>
+                  <a href="/edit-profile?id=<%=user._id %>" class="px-2"><i class="fa fa-pen"></i></a>
+                </p>
+              </div>
+            </div>
+            <a href="/add-address" class="btn btn-light border mt-3"> <i class="me-2 fa fa-plus"></i> Add new address </a>
+            <input type="text"   class="btn mt-3"  value="Referral Code :" readonly style="border: none; cursor: auto;">
+            <input type="text" name="referralCode" class="btn mt-3" id="referralCode" value="<%= referralCode %>" readonly style="border-color: red; cursor: copy;">
+           
+            <hr />
+  
+           <span>Wallet Balance : </span>
+            <input type="text" name="wallet" id="walletBalance" class="btn" value="<%= walletBalance %>" readonly style="border-color: green;">
+            <a href="" class="btn btn-light border " id="walletButton"> <i class="me-2 fa fa-plus"></i>Recharge Wallet</a>
+            
+           
+            <hr class="my-4" />
+            
+           <div class="col-md-6">
+              <div class="form-group">
+                <label for="exampleInputPassword1">Old Password</label>
+                <input type="password" class="form-control" id="oldPassword" placeholder="Old Password" name="oldPassword" value="">
+                <p style="color: red;" id="oldPasswordErr"></p>
+                <input type="hidden" name="userId" id="userId" value="<%= user._id %>">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">New Password</label>
+                <input type="password" class="form-control" id="newPassword1" placeholder="New Password" name="newPassword" value="">
+                <p style="color: red;" id="newPassword1Err"></p>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Re-Enter New Password</label>
+                <input type="password" class="form-control" id="newPassword2" placeholder="Re-enter New Password">
+                <p style="color: red;" id="newPassword2Err"></p>
+              </div>
+              <a href="" class="btn btn-outline-success mt-3" id="passwordChangeBtn" >Submit</a>
+              <div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+<%- include('../layout/footer') %>

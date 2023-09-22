@@ -1,0 +1,38 @@
+<%- include('../layout/adminHeader') %>  
+
+<section class="content-main">
+    <div class="card mx-auto card-login">
+        <div class="card-body">
+            <h4 class="card-title mb-4">Edit Banner</h4>
+            <form method="post" action="/admin/edit-banner"  id="editBannerForm"  enctype="multipart/form-data">
+            <p>Give specific Name.</p> 
+                <div class="mb-3">
+                    <% if(typeof message !== 'undefined'){%>
+                        <p style="color: red;" ><%= message %></p>
+                   <% } %>
+                   <p style="color: red;" id="errBannerName" ></p>
+                   
+                    <input class="form-control" type="text" name="name" id="bannerName" value="<%= banner.name %>" >
+                </div> <!-- form-group// -->
+
+                <div class="mb-3">
+                    <p style="color: red;" id="errBannerDescription" ></p>
+                    <input class="form-control" type="text" name="description" id="bannerDescription" value="<%= banner.description%>">
+                </div>
+                <div class="mb-3">
+                    <p style="color: red;" id="errpercentageDiscount" ></p>
+                    <input class="form-control"  type="file" name="image" id="image">
+                    <input type="hidden" name="bannerId" id="" value="<%= banner._id %>">
+                    <img src="/images/userImages/<%=banner.image%>" alt="" style="width: 90px; height: 90px;">
+                </div>
+      
+                <div class="mb-4">
+                    <button type="submit" class="btn btn-primary w-100" id="bannerBtn"> Submit</button>
+                </div> <!-- form-group// -->
+            </form>
+        </div>
+    </div>
+  </section>
+
+
+<%- include('../layout/adminFooter') %>

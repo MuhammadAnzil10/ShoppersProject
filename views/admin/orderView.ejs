@@ -1,0 +1,99 @@
+<%- include('../layout/adminHeader') %>
+
+<h5 class="mb-3">Your orders</h5>
+
+<div class="card border border-primary mb-4 shadow-0">
+  <div class="card-body pb-0">
+    <header class="d-lg-flex">
+      <div class="flex-grow-1">
+        <% if(typeof order !== 'undefined'){%>
+        <h6 class="mb-0">Order ID: <%= order._id %><i class="dot"></i>  
+          <!-- <span class="text-success"> <%= order.deliveryStatus %></span> -->
+        </h6>
+        <span class="text-muted">Date: <%= order.date %> </span>
+      </div>
+      <div>
+    
+        <% if(order.orderStatus==='Placed' && order.cancellationStatus === 'Not requested'){ %>
+          <a href="/admin/order-cancel?id=<%= order._id %>" class="btn btn-sm btn-outline-danger">Cancel order</a>
+          <a href="/admin/confirm-order?id=<%= order._id %>" class="btn btn-sm btn-outline-primary">Confirm order</a>
+         <% } else if( (order.orderStatus==='Confirm' && order.cancellationStatus === 'Not requested') || (order.cancellationStatus === 'Cancelled' && order.orderStatus==='Placed' ) ){%>
+          <a href="/admin/order-cancel?id=<%= order._id %>" class="btn btn-sm btn-outline-danger">Cancel order</a>
+          <a href="/admin/order-delivered?id=<%= order._id %>" class="btn btn-sm btn-outline-primary">Make as Delivered</a>
+          <% } else if(order.orderStatus==='Delivered' && (order.cancellationStatus === 'Not requested' || order.cancellationStatus === 'Cancelled')){%>
+            <!-- <a href="#" class="btn btn-sm btn-outline-danger">Delivered</a> -->
+            <button class="btn btn-sm btn-outline-danger">Delivered</button>
+          <% } else if(order.cancellationStatus ==='Requested'){%>
+            <a href="/admin/order-cancel-request?id=<%= order._id %>" class="btn btn-sm btn-outline-danger">Cancel</a>
+            <a href="/admin/order-cancel?id=<%= order._id %>" class="btn btn-sm btn-outline-danger">Accept Cancel</a>
+
+            <% } else if(order.orderStatus==='Return requested'){%>
+              <a href="/admin/order-cancel-return?id=<%= order._id %>" class="btn btn-sm btn-outline-danger">Cancel</a>
+            <a href="/admin/order-return?id=<%= order._id %>" class="btn btn-sm btn-outline-danger">Accept Return</a>
+
+            <% } else if(order.orderStatus==='Returned'){%>
+              <button class="btn btn-sm btn-outline-danger">Returned</button>
+
+              <% } else if(order.orderStatus==='Returned accepted'){%>
+                <button class="btn btn-sm btn-outline-danger">Returned</button>
+
+           <% } else if(order.cancelledOrder){%>
+              <button class="btn btn-sm btn-outline-danger">Order Cancelled</button>
+
+         <%}%>
+      
+        <!-- <a href="#" class="btn btn-sm btn-primary shadow-0">Track order</a>  -->
+      </div>
+    </header>
+    <hr />
+    <div class="row">
+      <div class="col-lg-4">
+        <p class="mb-0 text-muted">Contact</p>
+        <p class="m-0">
+            <%= order.userId.name %> <br />
+          Phone:  <%= order.userId.mobile %> <br />
+          Email:  <%= order.userId.email %>
+        </p>
+      </div>
+      <div class="col-lg-4 border-start">
+        <p class="mb-0 text-muted">Shipping address</p>
+        <p class="m-0">
+            <%= order.addressDetails.addressLine1 %><br />
+            <%= order.addressDetails.addressLine2 %>,<%= order.addressDetails.postCode %>
+        </p>
+      </div>
+      <div class="col-lg-4 border-start">
+        <p class="mb-0 text-muted">Payment</p>
+        <p class="m-0">
+          <span class="text-success"> <%= order.paymentMethod %> </span> <br />
+          Shipping fee: $0 <br />
+          Total : $<%= order.orderValue %>
+        </p>
+      </div>
+    </div>
+    <hr />
+    <ul class="row list-unstyled">
+        
+       <% order.products.forEach((product)=>{ %>
+      <li class="col-xl-4 col-lg-6">
+        <div class="d-flex mb-3 mb-xl-0">
+          <div class="me-3">
+            <img width="72" height="72" src="/images/productImages/<%= product.productId.images[0] %>" class="img-sm rounded border" />
+          </div>
+          <div class="">
+            <p class="mb-0"><%= product.productId.name %></p>
+            <strong> <%= product.productId.price %> </strong>
+          </div>
+        </div>
+      </li>
+    <% }) %>
+  <%  } else { %>
+
+   <h1>No Items</h1>
+
+  <% } %>
+    </ul>
+  </div>
+</div>
+
+<%- include('../layout/adminFooter') %>

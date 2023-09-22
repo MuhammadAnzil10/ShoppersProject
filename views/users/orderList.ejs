@@ -1,0 +1,50 @@
+<%- include('../layout/header') %>
+
+    
+  <div style="	margin: 50px 19px 127px 25px;;">
+
+   
+
+    <table id="myTable" class="display">
+      <thead>
+       
+        <tr>
+            <th scope="row">Date</th>
+            <th class="th-lg">OrderId</th>
+            <th class="th-lg">Total Price</th>
+            <th class="th-lg">Payment Method</th>
+            <th class="th-lg">Status</th>
+            <th class="th-lg">Oders</th>
+            <!-- <th class="th-lg"><a href="">Username</a></th> -->
+        </tr>
+    </thead>
+    <!--Table head-->
+    <!--Table body-->
+    <tbody>
+     <% if(typeof order !== 'undefined'){ %>
+
+      <% for(let i=0; i<order.length; i++){ %>
+
+      
+        <tr>
+            <th scope="row"><%= order[i].date.toLocaleString() %></th>
+            <td><%= order[i]._id %></td>
+            <td><%= order[i].orderValue %></td>
+            <td><%= order[i].paymentMethod %></td>
+            <td><%= order[i].orderStatus %></td>
+            <td><a href="/view-order-products?id=<%= order[i]._id %>" class="btn btn-primary">View</a></td>
+        
+        </tr>
+
+        <% } %>
+        <% } %>
+       
+        
+    </tbody>
+  </table>
+                
+       
+</div>
+
+  <%- include('../layout/footer') %>
+

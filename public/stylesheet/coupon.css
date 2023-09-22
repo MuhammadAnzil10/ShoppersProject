@@ -1,0 +1,13 @@
+
+.coupon {
+  border-radius: 12px;
+  box-shadow: 5px 8px 10px #d6d5d533;
+}
+body {
+  background: rgb(251, 253, 255);
+}
+.code:hover {
+  background: rgb(17, 185, 215);
+  color: #0f0202;
+  cursor: pointer;
+}

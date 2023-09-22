@@ -1,0 +1,89 @@
+<%- include('../layout/adminHeader') %>
+        <section class="content-main">
+            <div class="row">
+                <div class="col-9">
+                    <div class="content-header">
+                        <h2 class="content-title">Add New Product</h2>
+                        <div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <form method="post"  id="addCouponForm">
+                                <a href="/admin/add-coupon"><button class="btn btn-md rounded font-sm hover-up mb-4">Submit</button></a> 
+                                <% if(typeof error !== 'undefined'){ %>
+                                    <p style="color: red;"><%= error %></p>
+                                <% } %>
+                                <% if(typeof message !== 'undefined'){ %>
+                                    <p style="color: green;"><%= message %></p>
+                                <% } %>
+                                <div class="mb-4">
+                                    <p style="color: red;" id="addCouponCodeErr"></p>
+                                    <label for="couponCode" class="form-label">Coupon code</label>
+                                    <input type="text" placeholder="Enter Capital Letters" class="form-control" id="addCouponCode" name="couponCode">
+                                </div>
+                                <div class="mb-4">
+                                    <p style="color: red;" id="addCouponDescriptionErr"></p>
+                                    <label for="couponDescription" class="form-label">Coupon Discription</label>
+                                    <input type="text" placeholder="Type here" class="form-control" id="addCouponDescription" name="couponDescription">
+                                </div>
+                                <div class="mb-4">
+                                    <p style="color: red;" id="addDiscountPercentageErr"></p>
+                                    <label for="discountPercentage" class="form-label">Discount Percentage</label>
+                                    <input type="text" placeholder="Type here" class="form-control" id="addDiscountPercentage" name="discountPercentage">
+                                </div>
+                                <div class="mb-4">
+                                    <p style="color: red;" id="addMaximumDiscountErr"></p>
+                                    <label for="maximumDiscount" class="form-label">Maximum Discount</label>
+                                    <input type="text" placeholder="Type here" class="form-control" id="addMaximumDiscount" name="maximumDiscount">
+                                </div>
+                                <div class="mb-4">
+                                    <p style="color: red;" id="addMinimumOrderValueErr"></p>
+                                    <label for="minimumOrderValue" class="form-label">Minimum Order Value</label>
+                                    <input type="text" placeholder="Type here" class="form-control" id="addMinimumOrderValue" name="minimumOrderValue">
+                                </div>
+                                <div class="mb-4">
+                                    <p style="color: red;" id="addValidityErr"></p>
+                                    <label for="validity" class="form-label">Valid for</label>
+                                    <input type="text" placeholder="Type here" class="form-control" id="addValidity" name="validity">
+                                </div>
+                                <div class="mb-4">
+                                    <p style="color: red;" id="addUsageCountErr"></p>
+                                    <label for="usageCount" class="form-label">Usage Count</label>
+                                    <input type="text" placeholder="Type here" class="form-control" id="addUsageCount" name="usageCount">
+                                </div>
+                                
+                            </form>
+                        </div>
+                    </div> <!-- card end// -->
+                </div>
+            </div>
+        </section> <!-- content-main end// -->
+        <footer class="main-footer font-xs">
+            <div class="row pb-30 pt-15">
+                <div class="col-sm-6">
+                    <script>
+                    document.write(new Date().getFullYear())
+                    </script> ©, Evara - HTML Ecommerce Template .
+                </div>
+                <div class="col-sm-6">
+                    <div class="text-sm-end">
+                        All rights reserved
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+    <script src="assets/js/vendors/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/vendors/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/vendors/select2.min.js"></script>
+    <script src="assets/js/vendors/perfect-scrollbar.js"></script>
+    <script src="assets/js/vendors/jquery.fullscreen.min.js"></script>
+    <!-- Main Script -->
+    <script src="assets/js/main.js" type="text/javascript"></script>
+
+
+<%- include('../layout/adminFooter') %>

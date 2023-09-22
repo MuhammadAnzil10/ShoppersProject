@@ -1,0 +1,279 @@
+<%- include('../layout/header') %>
+
+		<div class="untree_co-section">
+		    <div class="container">
+		     
+			  <% if(typeof address !== 'undefined'){%>
+		      <div class="row">
+		        <div class="col-md-6 mb-5 mb-md-0">
+		          <h2 class="h3 mb-3 text-black">Billing Details</h2>
+		          <div class="p-3 p-lg-5 border bg-white">
+		            <div class="form-group row">
+		              <div class="col-md-12">
+		                <label for="name" class="text-black">Full Name</label>
+		                <input type="text" class="form-control" id="name" name="name" readonly value="<%= address.name %>">
+		              </div>
+		            </div>
+
+		            <div class="form-group row">
+		              <div class="col-md-12">
+		                <label for="number" class="text-black">Phone Number </label>
+		                <input type="text" class="form-control" id="number" name="number" readonly value="<%= address.phone %>">
+		              </div>
+		            </div>
+
+		            <div class="form-group row">
+		              <div class="col-md-12">
+		                <label for="address1" class="text-black">Address Line 1 <span class="text-danger">*</span></label>
+		                <input type="text" class="form-control" id="address1" name="addressLine1" readonly value="<%= address.addressLine1 %>">
+		              </div>
+		            </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                          <label for="address2" class="text-black">Address Line 2 <span class="text-danger">*</span></label>
+                          <input type="text" class="form-control" id="address2" name="addressLine2" readonly value="<%= address.addressLine2 %>">
+                        </div>
+                      </div>
+                    
+		            <div class="form-group row">
+		              <div class="col-md-12">
+		                <label for="postCode" class="text-black">Post Code <span class="text-danger">*</span></label>
+		                <input type="text" class="form-control" id="c_state_country" name="postCode" readonly value="<%= address.postCode %>">
+		              </div>
+		              <div class="col-md-12">
+		                <label for="area" class="text-black">Area<span class="text-danger">*</span></label>
+		                <input type="text" class="form-control" id="area" name="area" readonly value="<%= address.area %>">
+		              </div>
+		            </div>
+
+		            <div class="form-group row mb-5">
+		              <div class="col-md-6">
+		                <label for="country" class="text-black">Country <span class="text-danger">*</span></label>
+		                <input type="text" class="form-control" id="country" name="country" readonly value="<%= address.country %>">
+		              </div>
+		              <div class="col-md-6">
+		                <label for="state" class="text-black">State/Region <span class="text-danger">*</span></label>
+		                <input type="text" class="form-control" id="state" name="state" readonly value="<%= address.state %>">
+		              </div>
+		            </div>
+					<%}else{%>
+						<div class="row">
+							<div class="col-md-6 mb-5 mb-md-0">
+							  <h2 class="h3 mb-3 text-black">Billing Details</h2>
+							  <div class="p-3 p-lg-5 border bg-white">
+								<div class="form-group row">
+								  <div class="col-md-12">
+									<label for="name" class="text-black">Full Name</label>
+									<input type="text" class="form-control" id="name" name="name" readonly value="">
+								  </div>
+								</div>
+			
+								<div class="form-group row">
+								  <div class="col-md-12">
+									<label for="number" class="text-black">Phone Number </label>
+									<input type="text" class="form-control" id="number" name="number" readonly value="">
+								  </div>
+								</div>
+			
+								<div class="form-group row">
+								  <div class="col-md-12">
+									<label for="address1" class="text-black">Address Line 1 <span class="text-danger">*</span></label>
+									<input type="text" class="form-control" id="address1" name="addressLine1" readonly value="">
+								  </div>
+								</div>
+			
+								<div class="form-group row">
+									<div class="col-md-12">
+									  <label for="address2" class="text-black">Address Line 2 <span class="text-danger">*</span></label>
+									  <input type="text" class="form-control" id="address2" name="addressLine2" readonly value="">
+									</div>
+								  </div>
+								
+								<div class="form-group row">
+								  <div class="col-md-12">
+									<label for="postCode" class="text-black">Post Code <span class="text-danger">*</span></label>
+									<input type="text" class="form-control" id="c_state_country" name="postCode" readonly value="">
+								  </div>
+								  <div class="col-md-12">
+									<label for="area" class="text-black">Area<span class="text-danger">*</span></label>
+									<input type="text" class="form-control" id="area" name="area" readonly value="">
+								  </div>
+								</div>
+			
+								<div class="form-group row mb-5">
+								  <div class="col-md-6">
+									<label for="country" class="text-black">Country <span class="text-danger">*</span></label>
+									<input type="text" class="form-control" id="country" name="country" readonly value="">
+								  </div>
+								  <div class="col-md-6">
+									<label for="state" class="text-black">State/Region <span class="text-danger">*</span></label>
+									<input type="text" class="form-control" id="state" name="state" readonly value="">
+								  </div>
+								</div>
+
+					<% } %>
+
+
+		            <div class="form-group">
+		              <label for="c_ship_different_address" class="text-black" data-bs-toggle="collapse" href="#ship_different_address" role="button" aria-expanded="false" aria-controls="ship_different_address"><input type="checkbox" value="1" id="c_ship_different_address"> Ship To A Different Address?</label>
+					  <a href="/adresses"><button class="btn btn-success" style="margin-left: 100px;" id="moreAddresses">More Address</button> </a>
+		             <div class="collapse" id="ship_different_address">
+						
+		                <div class="py-2">
+							
+		                  
+
+                         <form action="/add-address?checkout=<%=true%>" method="post">
+		                  <div class="form-group row">
+		                    <div class="col-md-12">
+		                      <label for="name" class="text-black">Full Name <span class="text-danger">*</span></label>
+		                      <input type="text" class="form-control" id="name" name="name" >
+		                    </div>
+		                  </div>
+
+		                  <div class="form-group row">
+		                    <div class="col-md-12">
+		                      <label for="number" class="text-black">Phone Number <span class="text-danger">*</span></label>
+		                      <input type="text" class="form-control" id="number" name="phone">
+		                    </div>
+		                  </div>
+
+		                  <div class="form-group row  mb-3">
+		                    <div class="col-md-12">
+		                      <label for="address1" class="text-black">Address Line 1 <span class="text-danger">*</span></label>
+		                      <input type="text" class="form-control" id="address1" name="addressLine1" placeholder="">
+		                    </div>
+		                  </div>
+                          <div class="form-group row  mb-3">
+		                    <div class="col-md-12">
+		                      <label for="address2" class="text-black">Address Line 2 <span class="text-danger">*</span></label>
+		                      <input type="text" class="form-control" id="address2" name="addressLine2" placeholder="">
+		                    </div>
+		                  </div>
+
+
+		                  <div class="form-group row">
+		                    <div class="col-md-12">
+		                      <label for="c_diff_state_country" class="text-black">Post Code <span class="text-danger">*</span></label>
+		                      <input type="text" class="form-control" id="c_diff_state_country" name="c_diff_state_country">
+		                    </div>
+		                    <div class="col-md-12">
+		                      <label for="area" class="text-black">Area <span class="text-danger">*</span></label>
+		                      <input type="text" class="form-control" id="area" name="area">
+		                    </div>
+		                  </div>
+
+		                  <div class="form-group row mb-5">
+		                    <div class="col-md-6">
+		                      <label for="country" class="text-black">Country<span class="text-danger">*</span></label>
+		                      <input type="text" class="form-control" id="country" name="country">
+		                    </div>
+		                    <div class="col-md-6">
+		                      <label for="state" class="text-black">State/Region<span class="text-danger">*</span></label>
+		                      <input type="text" class="form-control" id="state" name="state" placeholder="">
+		                    </div>
+		                  </div>
+                          <button class="btn btn-primary" style="margin-left: 172px;">Save</button>
+		                </div>
+
+		              </div>
+		            </div>
+                </form>
+		          
+
+		          </div>
+		        </div>
+		        <div class="col-md-6">
+
+		          <div class="row mb-5">
+		            <div class="col-md-12">
+		              <h2 class="h3 mb-3 text-black">Wallet Balance</h2>
+		              <div class="p-3 p-lg-5 border bg-white">
+						<span>Wallet Balance : </span>
+						<input type="text" name="wallet" id="walletBalance" class="btn" value="<%= walletBalance %>" readonly style="border-color: green;">
+						<a href="" class="btn btn-light border " id="walletButton"> <i class="me-2 fa fa-plus"></i>Recharge Wallet</a>
+						
+					   
+		              </div>
+					  
+		            </div>
+		          </div>
+
+		          <div class="row mb-5">
+		            <div class="col-md-12">
+		              <h2 class="h3 mb-3 text-black">Your Order</h2>
+		              <div class="p-3 p-lg-5 border bg-white">
+		                <table class="table site-block-order-table mb-5">
+		                  <thead>
+		                    <th>Product</th>
+		                    <th>Total</th>
+		                  </thead>
+		                  <tbody>
+							<% if(cart && cart.products.length > 0) { %>
+								<% cart.products.forEach((item)=>{ %>
+								  
+
+		                    <tr>
+		                      <td><%= item.productId.name %><strong class="mx-2">x</strong><%= item.quantity %></td>
+		                      <td>&#8377;<%= item.subtotal %></td>
+		                    </tr>
+
+					<%	}) %> 
+		                    <tr>
+		                      <td class="text-black font-weight-bold"><strong>Cart Subtotal</strong></td>
+		                      <td class="text-black subTotal"  id="<%= cart.cartSubtotal %>">&#8377;<%= cart.cartSubtotal %></td>
+		                    </tr>
+						
+		                      <td class="text-black font-weight-bold"><strong>Order Total</strong></td>
+		                      <td class="text-black font-weight-bold" id="totalAmountItem"><strong>&#8377;<%= cart.totalAmount %></strong></td>
+		                    </tr>
+		                  </tbody>
+		                </table>
+						<% } else{%>
+                         <tr>
+							<td>
+								No items
+							</td>
+							<td>
+								
+							</td>
+						 </tr>
+						 <tr>
+							<td>
+								No items
+							</td>
+							<td>
+								
+							</td>
+						 </tr>
+						</tbody>
+					</table>
+							
+						<% } %>
+		              
+						<div class="border p-3 mb-5">
+							<h3 class="h6 mb-0"><input type="radio" name="payment-method" id="payment" value="COD" onchange="checkPayment(this)" > COD</h3>
+						  </div>
+						  <div class="border p-3 mb-5">
+							<h3 class="h6 mb-0"><input type="radio" name="payment-method" id="payment" value="WALLET" onchange="checkPayment(this)" > Wallet</h3>
+						  </div>
+						  <div class="border p-3 mb-5">
+							<h3 class="h6 mb-0"><input type="radio" name="payment-method" id="payment" value="ONLINE" onchange="checkPayment(this)"> Online payment</h3>
+						  </div>
+
+		                <div class="form-group">
+		                  <a href=""> <button class="btn btn-primary btn-lg py-3 btn-block order" id="placeOrderBtn" >Place Order</button></a>
+		                </div>
+
+		              </div>
+		            </div>
+		          </div>
+
+		        </div>
+		      </div>
+		      <!-- </form> -->
+		    </div>
+		  </div>
+          
+<%- include('../layout/footer') %>

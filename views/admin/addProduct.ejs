@@ -1,0 +1,107 @@
+
+<%- include('../layout/adminHeader') %>  
+
+
+<section class="content-main">
+    <div class="row">
+        <div class="col-9">
+            <div class="content-header">
+                <h2 class="content-title">Add New Product</h2>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <form action="/admin/product/add-product" method="post" enctype="multipart/form-data" id="productAddFom">
+                        <div class="mb-4">
+                            <button class="btn btn-md rounded font-sm hover-up" id="productAddButton">Add Product</button>
+                        </div>
+                        <% if(typeof message !== 'undefined'){ %>
+
+                            <p style="color: red;"><%= message %></p>
+                     <%  } %>
+                        <div class="mb-4">
+                            <label for="product_name" class="form-label">Product title</label>
+                            <input type="text" placeholder="Type here" class="form-control" id="product_name" name="name">
+                            <p style="color: red;" id="ProductNameErr"></p>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label">Description</label>
+                            <textarea placeholder="Type here" class="form-control" rows="4" name="description" id="description"></textarea>
+                            <p style="color: red;" id="ProductDescriptionErr"></p>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="mb-4">
+                                    <label class="form-label">Regular price</label>
+                                    <div class="row gx-2">
+                                        <input placeholder="" type="text" class="form-control" name="regularPrice" id="regularPrice">
+                                        <p style="color: red;" id="ProductRegularPriceErr"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                               
+                                <div class="mb-4">
+                                    <label class="form-label">Discount Percentage(%)</label>
+                                    <input placeholder="%" type="number" class="form-control" name="discountPercentage" id="discountPercentage" min="1" >
+                                    <p style="color: red;" id="discountPercentageErr"></p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="mb-4">
+                                    <label class="form-label"> Stock Quantity</label>
+                                    <input placeholder="" type="number" class="form-control" name="stock" min="1" value="1" id="stockQuantit">
+                                    <p style="color: red;" id="ProductStockQuantityErr"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <h4>Media</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="input-upload">
+                                        <img src="assets/imgs/theme/upload.svg" alt="">
+                                        <input class="form-control" id="imagesProduct" accept="image/*"  type="file" name="images" multiple >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <h4>Organization</h4>
+                                </div>
+                                <div class="card-body" >
+                                    <div class="gx-2">
+                                        <div class="col-sm-6 mb-3">
+                                            <label class="form-label" >Category</label>
+                                            <select class="form-select" style="width: 100%;" name="category">
+                                             <%   if(typeof category !== 'undefined')
+                                                { %>
+                                                <% for(let i=0;i<category.length;i++){ %>
+                                                    <option value="<%= category[i]._id %>"><%= category[i].name %></option>
+                                               <% } %>
+
+                                                <% }else{ %>
+
+                                                    <option>No Category</option>
+
+                                               <% } %>
+                                               
+                                            </select>
+                                        </div>
+                                    </div> <!-- row.// -->
+                                </div>
+                            </div>
+                    </form>
+                </div>
+            </div> <!-- card end// -->
+        </div>
+    </div>
+</section> <!-- content-main end// -->
+
+
+<%- include('../layout/adminFooter') %>
+
+  

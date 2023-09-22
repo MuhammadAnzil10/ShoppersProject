@@ -1,0 +1,36 @@
+<%- include('../layout/adminHeader') %>  
+
+<section class="content-main">
+    <div class="card mx-auto card-login">
+        <div class="card-body">
+            <h4 class="card-title mb-4">Add Banner</h4>
+            <form method="post" action="/admin/add-banner"  id="addBannerForm"  enctype="multipart/form-data">
+            <p>Give specific Name.</p> 
+                <div class="mb-3">
+                    <% if(typeof message !== 'undefined'){%>
+                        <p style="color: red;" ><%= message %></p>
+                   <% } %>
+                   <p style="color: red;" id="errAddBannerName" ></p>
+                   
+                    <input class="form-control" placeholder="Banner Name" type="text" name="name" id="addBannerName">
+                </div> <!-- form-group// -->
+
+                <div class="mb-3">
+                    <p style="color: red;" id="erraddBannerDescription" ></p>
+                    <input class="form-control" placeholder="Description" type="text" name="description" id="addBannerDescription">
+                </div>
+                <div class="mb-3">
+                    <p style="color: red;" id="errpercentageDiscount" ></p>
+                    <input class="form-control"  type="file" name="image" id="addBannerImage">
+                </div>
+      
+                <div class="mb-4">
+                    <button type="submit" class="btn btn-primary w-100"> Add Banner </button>
+                </div> <!-- form-group// -->
+            </form>
+        </div>
+    </div>
+  </section>
+
+
+<%- include('../layout/adminFooter') %>

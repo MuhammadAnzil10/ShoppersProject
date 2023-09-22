@@ -1,0 +1,82 @@
+<%- include('../layout/header') %>
+
+
+<section style="background-color: #eee;">
+  <form action="" method="post" enctype="multipart/form-data" id="imageForm">
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card mb-4">
+            <div class="card-body text-center">
+              <img src="/images/userImages/<%= user.image %>" alt="avatar"
+                class="rounded-circle img-fluid" style="width: 150px;">
+                <input type="file" name="image" id="imageInput" accept="image/*">
+              <h5 class="my-3"><%= user.name %></h5>
+              <input type="hidden" name="user_id" value="<%= user._id %>" id="">
+              <div class="d-flex justify-content-center mb-2">
+                <button class="btn btn-primary">Submit</button>
+                
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="col-lg-8 mb-5">
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Username</p>
+                </div>
+                <div class="col-sm-9">
+                  <input type="text" name="name" id="name" value="<%= user.name %>">
+        
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Email</p>
+                </div>
+                <div class="col-sm-9">
+                 <input type="email" name="email" id="email" value="<%= user.email %>">
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Phone</p>
+                </div>
+                <div class="col-sm-9">
+                  <input type="text" name="mobile" value="<%= user.mobile %>">
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-9">
+              
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Message</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">
+                    <% if(typeof message !== 'undefined'){%>
+                      <p style="color: red;"><%= message %></p>
+                  <%  } %>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  </section>
+
+
+  <%- include('../layout/footer') %>

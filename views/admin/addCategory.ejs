@@ -1,0 +1,36 @@
+<%- include('../layout/adminHeader') %>  
+
+<section class="content-main">
+    <div class="card mx-auto card-login">
+        <div class="card-body">
+            <h4 class="card-title mb-4">Add Category</h4>
+            <form method="post" action="/admin/category/add-category"  id="categoryForm">
+            <p>Give specific Name.</p> 
+                <div class="mb-3">
+                    <% if(typeof message !== 'undefined'){%>
+                        <p style="color: red;" ><%= message %></p>
+                   <% } %>
+                   <p style="color: red;" id="errName" ></p>
+                   
+                    <input class="form-control" placeholder="Category Name" type="text" name="name" id="name">
+                </div> <!-- form-group// -->
+
+                <div class="mb-3">
+                    <p style="color: red;" id="errDescription" ></p>
+                    <input class="form-control" placeholder="Description" type="text" name="description" id="description">
+                </div>
+                <div class="mb-3">
+                    <p style="color: red;" id="errpercentageDiscount" ></p>
+                    <input class="form-control" placeholder="Discount(%)" type="number" name="percentageDiscount" id="percentageDiscount">
+                </div>
+      
+                <div class="mb-4">
+                    <button type="submit" class="btn btn-primary w-100"> Add Category </button>
+                </div> <!-- form-group// -->
+            </form>
+        </div>
+    </div>
+  </section>
+
+
+<%- include('../layout/adminFooter') %>

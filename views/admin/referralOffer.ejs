@@ -1,0 +1,24 @@
+<%- include('../layout/adminHeader') %>  
+
+<section class="content-main">
+    <div class="card mx-auto card-login">
+        <div class="card-body">
+            <h4 class="card-title mb-4">Add Referral Offer</h4>
+            <form method="post" action="/admin/add-referral-offer"  id="referralForm">
+            <p>Give Referral offer</p> 
+                <div class="mb-3">
+                    <% if(typeof message !== 'undefined'){%>
+                        <p style="color: green;" ><%= message %></p>
+                   <% } %>
+                    <input class="form-control" placeholder="Enter Value" type="text" name="offerValue" id="offerValue">
+                </div> <!-- form-group// -->
+                <div class="mb-4">
+                    <button type="submit" class="btn btn-primary w-100"> Add Offer </button>
+                </div> <!-- form-group// -->
+            </form>
+        </div>
+    </div>
+  </section>
+
+
+<%- include('../layout/adminFooter') %>

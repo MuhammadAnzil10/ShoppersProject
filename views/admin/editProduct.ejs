@@ -1,0 +1,136 @@
+
+<%- include('../layout/adminHeader') %>  
+
+
+<section class="content-main">
+    <div class="row">
+        <div class="col-9">
+            <div class="content-header">
+                <h2 class="content-title">Edit Product</h2>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <form action="/admin/product/edit-product" method="post" enctype="multipart/form-data"  id="productEditForm">
+                        <div class="mb-4">
+                            <button class="btn btn-md rounded font-sm hover-up" >Save Changes</button>
+                        </div>
+                        <div class="mb-4">
+                            <label for="product_name" class="form-label">Product title</label>
+                            <p id="ProductNameErr" style="color: red;"></p>
+                            <input type="text" placeholder="Type here" class="form-control" id="product_name" name="name" value="<%= product.name %>">
+                            <input type="hidden" name="product_id" id="" value="<%= product._id %>">
+                        </div>
+                        <div class="mb-4">
+                            <p id="ProductDescriptionErr" style="color: red;"></p>
+                            <label class="form-label">Description</label>
+                           <input type="text" name="description" id="description" value="<%= product.description %>" style="width: 100%;" >
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="mb-4">
+                                    <p id="ProductRegularPriceErr" style="color: red;"></p>
+                                    <label class="form-label">Regular price</label>
+                                    <div class="row gx-2">
+                                        <input placeholder="" type="text" class="form-control" id="regularPrice" name="regularPrice" value="<%= product.regularPrice %>">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="mb-4">
+                                    <p style="color: red;" id="discountPercentageErr" style="color: red;"></p>
+                                    <label class="form-label">Discount Percentage(%)</label>
+                                    <input placeholder="%" type="number" class="form-control" name="discountPercentage" id="discountPercentage" min="1" value="<%=product.percentageDiscount %>">
+                                    
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="mb-4">
+                                    <label class="form-label">Stock</label>
+                                    <p id="ProductStockQuantityErr" style="color: red;"></p>
+                                    <input  type="number" class="form-control" name="stockQuantity"   value="<%= product.stock %>" min="0">
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                        <div class="col-lg-12">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <h4>Media</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="input-upload">
+                                        <% for(let i=0;i<product.images.length;i++){ %>
+                                            <a href="/admin/product/remove-product-image?img=<%=product.images[i]%>&pId=<%=product._id %> "><img src="/images/adminImages/bin.png" alt="" style="width: 30px; height: 30px;"></a>
+                                            <img src="/images/productImages/<%=product.images[i] %> " alt="" style="margin-right: 10px; width: 60px; height: 60px;" >   
+                                       <% } %>  
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <h4>Media</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="input-upload">
+                                        <img src="assets/imgs/theme/upload.svg" alt="">
+                                        <% if(product.images.length < 4){ %>
+                                        
+                                            <input class="form-control" type="file" name="images" multiple value="<%= product.images[0] %>" id="imagesProduct">
+
+                                        <% }else{ %>
+
+                                            <p style="color: red;">Already Uploaded Maximum Images if you want upload New Image Kindly Please One</p>
+
+                                        <% } %>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <h4>Organization</h4>
+                                </div>
+                                <div class="card-body" >
+                                    <div class="gx-2">
+                                        <div class="col-sm-6 mb-3">
+                                            <label class="form-label" >Category</label>
+                                            <select class="form-select" style="width: 100%;" name="category">
+                                                <option value="<%= oldCategory[0]._id %>"><%= oldCategory[0].name %></option>
+                                             <%   if(typeof category !== 'undefined')
+                                                { %>
+                                                <% for(let i=0;i<category.length;i++){ %>
+                                                    <%   if(oldCategory[0].name !== category[i].name)
+                                                    { %>
+                                                    <option value="<%= category[i]._id %>"><%= category[i].name %></option>
+                                                    <% } %>
+                                               <% } %>
+
+                                                <% }else{ %>
+
+                                                    <option>No Category</option>
+
+                                               <% } %>
+                                                   
+
+                                             
+                                               
+                                            </select>
+                                        </div>
+                                    </div> <!-- row.// -->
+                                </div>
+                            </div>
+                    </form>
+                </div>
+            </div>
+            </div> <!-- card end// -->
+           
+       
+    </div>
+</section> <!-- content-main end// -->
+
+
+
+<%- include('../layout/adminFooter') %>
+  

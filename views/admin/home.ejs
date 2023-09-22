@@ -1,0 +1,60 @@
+<%- include('../layout/adminHeader') %>
+    
+
+<section style="background-color: #eee;">
+       
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="card mb-4">
+                <div class="card-body text-center">
+                  <img src="/images/adminImages/man.png" alt="avatar"
+                    class="rounded-circle img-fluid" style="width: 150px;">
+                  <h5 class="my-3"><%= admin[0].name %></h5>
+                  <p class="text-muted mb-1"><a href="/admin/Dashboard" class="btn btn-primary">Dashboard</a></p>
+                  <div class="d-flex justify-content-center mb-2">
+                    <a href="/admin/logout" type="button" class="btn btn-outline-danger">Logout</a>
+                    <a href="/admin/edit?id=<%= admin[0]._id %>" type="button" class="btn btn-outline-primary ms-1">Edit</a>
+                  </div>
+                </div>
+              </div>
+              <div class="card mb-4 mb-lg-0">
+               
+              </div>
+            </div>
+            <div class="col-lg-8">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Full Name</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0"><%= admin[0].name %></p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Email</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0"><%= admin[0].email %></p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Phone</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0"><%= admin[0].mobile %></p>
+                    </div>
+                  </div>
+              
+                    
+        </div>
+      </section>
+
+         
+
+

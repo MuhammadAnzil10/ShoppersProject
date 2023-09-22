@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shoppers</title>
+  <link rel="icon" href="/images/adminImages/titleIcon.png">
+  <link rel="stylesheet" href="/stylesheet/otp.css" />
+		<!-- Boxicons CSS -->
+		<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+</head>
+<body>
+  
+
+
+
+    <div class="container">
+      <header>
+        <i class="bx bxs-check-shield"></i>
+      </header>
+      <h4>Enter OTP Code</h4>
+      <form action="/otp" method="post">
+        <div class="input-field">
+          <input type="number"  name="otp1"/>
+          <input type="number" name="otp2" disabled />
+          <input type="number" name="otp3" disabled />
+          <input type="number" name="otp4" disabled />
+        </div>
+        <button id="submitButton">Verify OTP</button>
+        <!-- <button id="resend" style="display: none;">Resend OTP</button> -->
+   
+        
+      </form>
+     <button ><a href="/otp" class="resend" style="text-decoration: none;" >Resend</a></button>
+   
+      
+    </div>
+
+    <script src="/javascript/otp.js" defer></script>
+
+    <script>
+        
+
+      let timerOn = true;
+     
+   (function timer(remaining) {
+    
+   
+
+    if(remaining > 0)
+   document.getElementById('submitButton').innerHTML ="Verify OTP "+  remaining;
+
+   else document.getElementById('submitButton').innerHTML ="Verify OTP ";
+
+   remaining -= 1;
+    
+     if(remaining >= 0 && timerOn) {
+       setTimeout(function() {
+   
+           timer(remaining);
+       }, 1000);
+       return;
+     }
+     else{
+   
+       
+     }
+   
+     if(!timerOn) {
+       // Do validate stuff here
+       return;
+     }
+     
+     const submitButton =  document.getElementById('submitButton').style.display="none"
+     document.getElementById('resend').style.display='block'
+
+  
+   
+   })(60)
+  //  window.addEventListener('load', timer(10));
+       </script>
+
+       <script>
+        
+       </script>
+    
+  </body>
+  </html>

@@ -1,0 +1,32 @@
+<%- include('../layout/adminHeader') %>
+
+
+<section class="content-main">
+    <div class="card mx-auto card-login">
+        <div class="card-body">
+            <h4 class="card-title mb-4">Password Reset</h4>
+           
+            <form method="post" action="/admin/forget">
+             
+              <% if(typeof message !== 'undefined'){
+                  %>
+                  <p style="color: green;"><%=message%></p>
+                 <%
+              }
+  
+              %>
+            <p>Enter your email address and we'll send you an email with instructions to reset your password.</p> 
+                <div class="mb-3">
+                    <input class="form-control" placeholder="Email" type="email" name="email">
+                </div> <!-- form-group// -->
+      
+                <div class="mb-4">
+                    <button type="submit" class="btn btn-primary w-100"> Reset Password </button>
+                </div> <!-- form-group// -->
+            </form>
+        </div>
+    </div>
+  </section>
+  
+  
+

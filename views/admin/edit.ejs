@@ -1,0 +1,60 @@
+<%- include('../layout/adminHeader') %>
+    
+
+<section style="background-color: #eee;">
+       <form action="/admin/edit" method="post" id="adminProfileEditForm">
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="card mb-4">
+                <div class="card-body text-center">
+                  <img src="/images/adminImages/man.png" alt="avatar"
+                    class="rounded-circle img-fluid" style="width: 150px;">
+                  <input type="hidden" name="admin_id" value="<%= admin._id %>">
+                  <div class="d-flex justify-content-center mb-2">
+                    <button class="btn btn-outline-success" type="submit">Update</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-8">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Full Name</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p style="color: red;" id="editAdminNameErr"></p>
+                      <p class="text-muted mb-0"><input type="text" name="name" id="editAdminName" value="<%= admin.name %>"></p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Email</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p style="color: red;" id="editAdminEmailErr"></p>
+                      <p class="text-muted mb-0"><input type="email" name="email" id="editAdminEmail" value="<%= admin.email %>"></p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Phone</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p style="color: red;" id="editAdminMobileErr"></p>
+                      <p class="text-muted mb-0"><input type="text" name="mno" id="editAdminMobile" value="<%= admin.mobile %>"></p>
+                    </div>
+                  </div>
+              
+                    
+        </div>
+    </form>
+      </section>
+
+      <%- include('../layout/adminFooter') %>
+         
+
+

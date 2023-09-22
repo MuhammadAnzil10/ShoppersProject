@@ -1,0 +1,271 @@
+<%- include("../layout/header") %>
+
+
+		<div class="untree_co-section product-section before-footer-section" >
+		    <div class="container">
+		      	<div class="row">
+					<div class="ms-auto"> 
+						<% if(currentPage > 1){%>
+					       <a href="?pages=<%=currentPage-1 || 1 %>" style="text-decoration: none;">Prev</a>
+						   <% }else {%>
+							<a  aria-disabled="true">Prev</a>	
+						<%}%>
+						<% for(let j=1;j<=totalPages;j++){%>
+							<a href="?pages=<%= j %>" style="text-decoration: none;"><%= j %></a>
+						<% } %>
+						<% if(currentPage < totalPages){%>	
+						<a href="?pages=<%=currentPage+1%>" style="text-decoration: none;">Next</a>
+						<% }else {%>
+							<a  aria-disabled="true">Next</a>
+						<%}%>
+					</div>
+					<div class="col-lg-3">
+					<form  class="mb-3">
+					<div class="input-group">
+						<div class="form-outline">
+						  <input type="search" id="form1" class="form-control" name="search" placeholder="Search By Price, Name"/>
+						</div>
+						<button type="submit" class="btn btn-danger">
+						  <i class="fas fa-search"></i>
+						</button>
+					  </div>
+					</form>
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="headingTwo">
+						  <button
+								  class="accordion-button text-dark bg-light"
+								  type="button"
+								  data-mdb-toggle="collapse"
+								  data-mdb-target="#panelsStayOpen-collapseTwo"
+								  aria-expanded="true"
+								  aria-controls="panelsStayOpen-collapseTwo"
+								  >
+							Categories
+						  </button>
+						</h2>
+						<div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo">
+						  <div class="accordion-body">
+							<form action="">
+							<div>
+							  <!-- Checked checkbox -->
+							  <% for(let i=0;i<categories.length;i++){ %>
+							  <div class="form-check">
+								<input class="form-check-input categoryCheckBox" type="checkbox" value="<%= categories[i]._id %>" id="flexCheckChecked1"  name="category" onclick="hanldevent(event)"/>
+								<label class="form-check-label" for="flexCheckChecked1"><%= categories[i].name %></label>
+								<span class="badge badge-secondary float-end">120</span>
+							  </div>
+							  <% } %>
+							</div>
+						  </div>
+						</div>
+					  </div>
+					  <div class="accordion-item">
+						<h2 class="accordion-header" id="headingTwo">
+						  <button
+								  class="accordion-button text-dark bg-light"
+								  type="button"
+								  data-mdb-toggle="collapse"
+								  data-mdb-target="#panelsStayOpen-collapseTwo"
+								  aria-expanded="true"
+								  aria-controls="panelsStayOpen-collapseTwo"
+								  >
+							Sort By Price
+						  </button>
+						</h2>
+						<div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo">
+						  <div class="accordion-body">
+							<form action="">
+							<div>
+							  <div class="form-check">
+								  <input class="form-check-input sortCheckBox" type="checkbox" value="ascending" id="flexCheckChecked1"  name="SortBy" onclick="handleSortingCheckboxClick(event)" />
+								  <label class="form-check-label" for="flexCheckChecked1">Ascending</label>
+								<span class="badge badge-secondary float-end">120</span>
+							  </div>
+							  <div class="form-check">
+								<input class="form-check-input sortCheckBox" type="checkbox" value="descending" id="flexCheckChecked1" onclick="handleSortingCheckboxClick(event)" name="SortBy" />
+								<label class="form-check-label" for="flexCheckChecked1">Descending</label>
+							  <span class="badge badge-secondary float-end">120</span>
+							</div>
+							</div>
+						  </div>
+						</div>
+					  </div>
+					  <div class="accordion-item">
+						<h2 class="accordion-header" id="headingThree">
+							
+						  <button
+								  class="accordion-button text-dark bg-light"
+								  type="button"
+								  data-mdb-toggle="collapse"
+								  data-mdb-target="#panelsStayOpen-collapseThree"
+								  aria-expanded="false"
+								  aria-controls="panelsStayOpen-collapseThree"
+								  >
+							Price
+						  </button>
+						</h2>
+						<div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse show" aria-labelledby="headingThree">
+						  <div class="accordion-body">
+						
+							<div class="row mb-3">
+							  <div class="col-6">
+								<p class="mb-0">
+								  Min
+								</p>
+								<div class="form-outline">
+								  <input type="number" id="typeNumber" class="form-control" name="min" value="<%= minPrice %>"/>
+								  <label class="form-label" for="typeNumber">&#8377;0</label>
+								</div>
+							  </div>
+							  <div class="col-6">
+								<p class="mb-0">
+								  Max
+								</p>
+								<div class="form-outline">
+								  <input type="number" id="typeNumber" class="form-control" name="max" value="<%= maxPrice %>"/>
+								  <label class="form-label" for="typeNumber">&#8377;1,00000</label>
+								</div>
+							  </div>
+							</div>
+							<div class="row">
+								<button type="submit" class="btn btn-white w-50 border border-secondary">Apply</button>
+								<button type="reset" class="btn  w-50 border border-secondary" id="filterClearBtn">Clear</button>
+							</div>
+							
+						  </div>
+						</div>
+					</form>
+					  </div>
+					</div>
+                    <% if(product.length === 0){%>
+						<div class="col-lg-6">
+						<center><video src="/images/noDataVdo/animation_llo1g4h2.mp4" height="200px" width="200px" loop autoplay muted></video></center>
+					</div>
+				<%	} %>
+					<% if(typeof product !== 'undefined'){ %>
+
+						<% for(let i=0;i<product.length;i++){ %>
+
+								<!-- Start Column 1 -->
+								<% if(typeof user !== 'undefined'){%>
+			<div class="col-12 col-md-4 col-lg-3 mb-5" >
+          <div class="card">
+            <div class="d-flex justify-content-between p-3">
+              <p class="lead mb-0"><%= product[i].name %></p>
+             
+            </div>
+            <a href="/product?id=<%= product[i]._id %>">
+            <img src="/images/productImages/<%= product[i].images[0] %>"
+              class="card-img-top" alt="products" style="width: 301px; height: 157px; padding: 0 0 0 3px;" />
+			  <input type="hidden" name="product_id" id="product" value="<%= product[i]._id %>">
+            </a>
+            <div class="card-body">
+              <div class="d-flex justify-content-between">
+                <p class="small">MRP</p>
+                <p class="small text-danger"><s>&#8377;<%= product[i].regularPrice %></s></p>
+              </div>
+  
+              <div class="d-flex justify-content-between mb-3">
+                <h5 class="mb-0">Offer Price</h5>
+                <h5 class="text-dark mb-0">&#8377;<%= product[i].promotionalPrice %></h5>
+              </div>
+  
+              <div class="d-flex justify-content-between mb-2">
+               
+                <div class=" text-warning">
+					<% if(product[i].stock === 0){ %>
+
+						<p style="color: red;">Out of Stock</p>
+
+					<% } else { %>
+
+						<a class="product-item btn" style=" height: 19px; width: 108; color: rgb(6, 44, 6);" href="/add-to-cart" id="addToCart" 
+						data-product-id="<%= product[i]._id %>"
+						data-product-price="<%= product[i].promotionalPrice %>"
+	
+						   >Add to Cart</a>
+
+					<% } %>
+					
+                </div>
+				<div class="ms-auto text-warning">
+					<a class="product-item btn" href="" id="addToWishlistBtn"  style="height: 35px;padding-top: 3px; border-radius: 22px;"
+					data-product-id="<%= product[i]._id %>"
+					data-product-price="<%= product[i].promotionalPrice %>"
+
+					 ><img src="/images/adminImages/wishlist.png" style="width: 15px; height: 16px;" alt=""></a>
+				</div>
+              </div>
+            </div>
+          </div>
+        </div>
+   
+
+
+					<!-- End Column 1 -->
+				<% } else { %>
+				<div class="col-12 col-md-4 col-lg-3 mb-5" >
+						<div class="card">
+						  <div class="d-flex justify-content-between p-3">
+							<p class="lead mb-0" style="font-family: Verdana, Geneva, Tahoma, sans-serif;"><%= product[i].name %></p>
+							
+						  </div>
+						  <a href="/product?id=<%= product[i]._id %>">
+						  <img src="/images/productImages/<%= product[i].images[0] %>"
+							class="card-img-top" alt="products" style="width: 301px; height: 157px; padding: 0 0 0 3px;" />
+						  </a>
+						  <div class="card-body">
+							<div class="d-flex justify-content-between">
+							  <p class="small">MRP</p>
+							  <p class="small text-danger"><s>&#8377;<%= product[i].regularPrice %></s></p>
+							</div>
+				
+							<div class="d-flex justify-content-between mb-3">
+							  <h5 class="mb-0">Offer Price</h5>
+							  <h5 class="text-dark mb-0">&#8377;<%= product[i].promotionalPrice %></h5>
+							</div>
+				
+							<div class="d-flex justify-content-between mb-2">
+							 
+							  <div class=" text-warning" >
+								  <a class="product-item btn"  href="/login" id="" 
+								  data-product-id="<%= product[i]._id %>"
+								  data-product-price="<%= product[i].promotionalPrice %>"
+			  
+									 >Add to Cart</a>
+							  </div>
+							  <div class="ms-auto text-warning">
+								<a class="product-item btn" href="/login" id=""  style="height: 35px;padding-top: 3px; border-radius: 22px;"
+								data-product-id="<%= product[i]._id %>"
+								data-product-price="<%= product[i].promotionalPrice %>"
+			
+								 ><img src="/images/adminImages/wishlist.png" style="width: 15px; height: 16px;"  alt=""></a>
+							</div>
+							</div>
+						  </div>
+						</div>
+					  </div>
+
+
+				<% } %>
+
+					<%	} %>
+                         
+					
+
+				<%	} else{ %>
+
+					<h1>No Products</h1>
+
+			<%	}  %>
+		      		
+
+		      	</div>
+		    </div>
+		</div>
+
+
+		
+		<%- include('../layout/footer') %>
+
+
