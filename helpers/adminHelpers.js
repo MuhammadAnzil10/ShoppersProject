@@ -1,7 +1,30 @@
-
+const Admin = require('../models/adminModel')
 const Order = require('../models/orderModel')
 const PDFDocument = require('pdfkit')
 const Excel = require('exceljs')
+
+
+
+
+
+const getAdmin = ()=>{
+    return new Promise(async(resolve,reject)=>{
+
+        const adminData = await Admin.find();
+        if(adminData){
+            resolve(adminData)
+        }else{
+            reject(new Error)
+        }
+    })
+}
+
+
+
+
+
+
+
 
 const salesPdf =async (orders,doc)=>{
 
@@ -56,5 +79,6 @@ const reportExcel = async(workbook,orders)=>{
 
 module.exports={
     salesPdf,
-    reportExcel
+    reportExcel,
+    getAdmin
 }

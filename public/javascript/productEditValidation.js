@@ -21,6 +21,7 @@ const ProductStockQuantityErr = document.getElementById('ProductStockQuantityErr
     const images = document.getElementById("imagesProduct");
     let imageAllowedTypes = ["image/jpeg", "image/png", "image/gif"];
     let maxSizeInBytes = 5 * 1024 * 1024;
+    const regex = /^[0-9]+/;
    
    
     if(productName.value.trim() ===''){
@@ -45,7 +46,15 @@ const ProductStockQuantityErr = document.getElementById('ProductStockQuantityErr
         ProductRegularPriceErr.innerHTML='Enter Price'
         return
 
-    }else{
+    }else if (
+      regularPrice.value.trim() < 0 ||
+      !regex.test(regularPrice.value.trim())
+    ) {
+      ProductRegularPriceErr.innerHTML = "Enter Valid Price";
+      return;
+    }
+    
+    else{
         ProductRegularPriceErr.innerHTML=''
     }
     if(images && images.files){

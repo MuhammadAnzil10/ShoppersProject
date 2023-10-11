@@ -15,6 +15,7 @@ const walletModel = require("../models/walletModel");
 const Referral = require('../models/referralModel')
 
 
+
 //---------- password hashing ---------//
 
 const securePassword = async (password) => {
@@ -40,8 +41,10 @@ const loadLogin = async (req, res) => {
 
 const loadAdminProfile = async (req, res) => {
   try {
-    const adminData = await Admin.find();
-
+  
+  
+    const adminData = await adminHelper.getAdmin()
+    
     res.render("home", { admin: adminData });
   } catch (error) {
     console.log(error.message);
